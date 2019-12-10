@@ -1,0 +1,29 @@
+import simplegui
+import time
+
+x = 0
+y = 20
+
+def draw_handler(canvas):
+    global x,y
+    canvas.draw_circle((x,y),45,3,"white")
+    
+def timer():
+    global x,y
+    
+    if x < 300 and y < 590:
+        x += 30
+        y += 60
+    elif x >= 300 and y >= 590:
+        x += 10
+        y -= 30
+    else:
+        x += 30
+        y += 60
+    
+frame = simplegui.create_frame("Animation",800,600)
+frame.set_canvas_background("black")
+frame.set_draw_handler(draw_handler)
+time = simplegui.create_timer(100,timer)
+time.start()
+frame.start()
